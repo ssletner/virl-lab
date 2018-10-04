@@ -4,4 +4,4 @@ This lab runs VIRL on an ESXi host in a lab environment. The lab was built using
 
 The topology consists of 2 spine switches (NX-OSV) and 3 leaf switches (CSR1000v). 
 
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+![alt text](https://github.com/ssletner/virl-lab/blob/master/virl-lab-leaf-spine.jpg "Lab Topology")
