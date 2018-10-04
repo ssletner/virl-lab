@@ -4,6 +4,8 @@ This lab runs VIRL on an ESXi host in a lab environment.
 
 A dedicated lab server in the same lab will run Ansible. 
 
+virlutils is used to start/stop the lab. 
+
 
 ### Topology
 
