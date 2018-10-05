@@ -22,16 +22,18 @@
     tasks:
       - name: GET FACTS
         ios_facts:
+        register: result
 
-      - name: DUMP FACTS INTO TEXT FILE
+      - name: DUMP REPORT FACTS INTO TEXT FILE
         template:
           src: facts-text.j2
           dest: ./docs/reports/{{ inventory_hostname }}.md
 
-      - name: DUMP FACTS INTO YML FILE
-        template:
-          src: facts-text.j2
-          dest: ./docs/reports/YML/{{ inventory_hostname }}.yml
+      - name: DUMP ALL FACTS INTO YML FILE
+        copy:
+          content: |
+            {{ result.ansible_facts | to_nice_yaml(indent=4)}}
+          dest: "./docs/reports/YML/{{ inventory_hostname }}.yml"
 
 
   - name: GATHER NXOS FACTS
@@ -42,19 +44,21 @@
     tasks:
       - name: GET NXOS FACTS
         nxos_facts:
+        register: result
 
-      - name: DUMP FACTS INTO FILE
+      - name: DUMP REPORT FACTS INTO FILE
         template:
           src: facts-text.j2
           dest: ./docs/reports/{{ inventory_hostname }}.md
 
-      - name: DUMP FACTS INTO YML FILE
-        template:
-          src: facts-text.j2
-          dest: ./docs/reports/YML/{{ inventory_hostname }}.yml
+      - name: DUMP ALL FACTS INTO YML FILE
+        copy:
+          content: |
+            {{ result.ansible_facts | to_nice_yaml(indent=4)}}
+          dest: "./docs/reports/YML/{{ inventory_hostname }}.yml"
 
 
-  - name: GENERATE FINAL REPORT
+  - name: GENERATE FINAL REPORTS
     hosts: localhost
     connection: local
     gather_facts: no
@@ -68,7 +72,7 @@
             dest: ./docs/master-report.md
             delimiter: "---"
 
-        - name: CREATE MASTER YML REPORT
+        - name: CREATE MASTER YML REPORT (ALL FACTS)
           assemble:
             src: ./docs/reports/YML
             dest: ./docs/master-report.yml
