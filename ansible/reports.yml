@@ -1,0 +1,75 @@
+---
+  
+  - name: MAKE DIRECTORY
+    hosts: iosxe
+    gather_facts: no
+    tags: dirs
+
+    tasks:
+
+      - file:
+          path: ./docs/reports/
+          state: directory
+      - file:
+          path: ./docs/reports/YML
+          state: directory
+
+  - name: GATHER IOS FACTS
+    hosts: iosxe
+    gather_facts: no
+    tags: ios
+
+    tasks:
+      - name: GET FACTS
+        ios_facts:
+
+      - name: DUMP FACTS INTO TEXT FILE
+        template:
+          src: facts-text.j2
+          dest: ./docs/reports/{{ inventory_hostname }}.md
+
+      - name: DUMP FACTS INTO YML FILE
+        template:
+          src: facts-text.j2
+          dest: ./docs/reports/YML/{{ inventory_hostname }}.yml
+
+
+  - name: GATHER NXOS FACTS
+    hosts: nxos
+    gather_facts: no
+    tags: nxos
+
+    tasks:
+      - name: GET NXOS FACTS
+        nxos_facts:
+
+      - name: DUMP FACTS INTO FILE
+        template:
+          src: facts-text.j2
+          dest: ./docs/reports/{{ inventory_hostname }}.md
+
+      - name: DUMP FACTS INTO YML FILE
+        template:
+          src: facts-text.j2
+          dest: ./docs/reports/YML/{{ inventory_hostname }}.yml
+
+
+  - name: GENERATE FINAL REPORT
+    hosts: localhost
+    connection: local
+    gather_facts: no
+    tags: assemble
+
+    tasks:
+
+        - name: CREATE MASTER TEXT REPORT
+          assemble:
+            src: ./docs/reports/
+            dest: ./docs/master-report.md
+            delimiter: "---"
+
+        - name: CREATE MASTER YML REPORT
+          assemble:
+            src: ./docs/reports/YML
+            dest: ./docs/master-report.yml
+            delimiter: "---"

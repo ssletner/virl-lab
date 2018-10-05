@@ -1,0 +1,1983 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<topology xmlns="http://www.cisco.com/VIRL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" schemaVersion="0.95" xsi:schemaLocation="http://www.cisco.com/VIRL https://raw.github.com/CiscoVIRL/schema/v0.95/virl.xsd">
+    <extensions>
+        <entry key="management_network" type="String">flat1</entry>
+        <entry key="management_lxc" type="Boolean">false</entry>
+        <entry key="AutoNetkit.enable_cdp" type="Boolean">false</entry>
+        <entry key="AutoNetkit.infrastructure_only" type="Boolean">false</entry>
+        <entry key="AutoNetkit.enable_OnePK" type="Boolean">false</entry>
+        <entry key="AutoNetkit.IGP" type="String">rip-v2</entry>
+    </extensions>
+    <node name="nx-osv-1" type="SIMPLE" subtype="NX-OSv" location="377,126">
+        <extensions>
+            <entry key="AutoNetkit.IGP" type="String">ospf</entry>
+            <entry key="config" type="String">!Command: show running-config
+!Time: Fri Oct  5 15:44:38 2018
+
+version 7.3(0)D1(1)
+power redundancy-mode redundant
+
+hostname spine-1
+vdc spine-1 id 1
+  limit-resource module-type m1 m1xl m2xl f2e 
+  allocate interface Ethernet2/1-48
+  allocate interface Ethernet3/1-48
+  allocate interface Ethernet4/1-48
+  limit-resource vlan minimum 16 maximum 4094
+  limit-resource vrf minimum 2 maximum 4096
+  limit-resource port-channel minimum 0 maximum 768
+  limit-resource u4route-mem minimum 96 maximum 96
+  limit-resource u6route-mem minimum 24 maximum 24
+  limit-resource m4route-mem minimum 58 maximum 58
+  limit-resource m6route-mem minimum 8 maximum 8
+
+feature privilege
+feature telnet
+feature lldp
+
+username admin password 5 $5$Otc7T0NC$K.ulnSZnSyXLrTGNBdtLgZJXEa8EeNx.BrdZ98XyK2C  role network-admin
+username sletner password 5 $5$2KMFb/lo$weRiWv80S2mOsqdXRx2JuGbM58M7BFpIyz9z.7J5Cy8  role network-admin
+username sletner passphrase  lifetime 99999 warntime 14 gracetime 3
+no password strength-check
+ip domain-lookup
+ip domain-name lab.com
+vlan dot1Q tag native
+system default switchport
+system jumbomtu 0
+no logging event trunk-status enable
+copp profile strict
+snmp-server user sletner network-admin auth md5 0x70dbe71b11a4ceb69c905b27ef6e46d5 priv 0x70dbe71b11a4ceb69c905b27ef6e46d5 localizedkey
+snmp-server user admin auth md5 0x328945d53e05e8e7207f8c20b142f0b7 priv 0x328945d53e05e8e7207f8c20b142f0b7 localizedkey engineID 128:0:0:9:3:0:0:0:0:0:0
+rmon event 1 log description FATAL(1) owner PMON@FATAL
+rmon event 2 log description CRITICAL(2) owner PMON@CRITICAL
+rmon event 3 log description ERROR(3) owner PMON@ERROR
+rmon event 4 log description WARNING(4) owner PMON@WARNING
+rmon event 5 log description INFORMATION(5) owner PMON@INFO
+snmp-server enable traps link
+snmp-server enable traps link cisco-xcvr-mon-status-chg
+
+ip route 0.0.0.0/0 10.34.183.221 vrf management
+vlan 1
+
+vrf context management
+  ip route 0.0.0.0/0 10.34.183.221
+
+interface mgmt0
+  vrf member management
+  ip address 10.34.183.215/27
+
+interface Ethernet2/1
+  no switchport
+  mac-address 0000.0000.002f
+  no shutdown
+
+interface Ethernet2/2
+  no switchport
+  mac-address 0000.0000.002f
+  no shutdown
+
+interface Ethernet2/3
+  no switchport
+  mac-address 0000.0000.002f
+  no shutdown
+
+interface Ethernet2/4
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/5
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/6
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/7
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/8
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/9
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/10
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/11
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/12
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/13
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/14
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/15
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/16
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/17
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/18
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/19
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/20
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/21
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/22
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/23
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/24
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/25
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/26
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/27
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/28
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/29
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/30
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/31
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/32
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/33
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/34
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/35
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/36
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/37
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/38
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/39
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/40
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/41
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/42
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/43
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/44
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/45
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/46
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/47
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/48
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet3/1
+  switchport
+  no shutdown
+
+interface Ethernet3/2
+  switchport
+  no shutdown
+
+interface Ethernet3/3
+  switchport
+  no shutdown
+
+interface Ethernet3/4
+  switchport
+  no shutdown
+
+interface Ethernet3/5
+  switchport
+  no shutdown
+
+interface Ethernet3/6
+  switchport
+  no shutdown
+
+interface Ethernet3/7
+  switchport
+  no shutdown
+
+interface Ethernet3/8
+  switchport
+  no shutdown
+
+interface Ethernet3/9
+  switchport
+  no shutdown
+
+interface Ethernet3/10
+  switchport
+  no shutdown
+
+interface Ethernet3/11
+  switchport
+  no shutdown
+
+interface Ethernet3/12
+  switchport
+  no shutdown
+
+interface Ethernet3/13
+  switchport
+  no shutdown
+
+interface Ethernet3/14
+  switchport
+  no shutdown
+
+interface Ethernet3/15
+  switchport
+  no shutdown
+
+interface Ethernet3/16
+  switchport
+  no shutdown
+
+interface Ethernet3/17
+  switchport
+  no shutdown
+
+interface Ethernet3/18
+  switchport
+  no shutdown
+
+interface Ethernet3/19
+  switchport
+  no shutdown
+
+interface Ethernet3/20
+  switchport
+  no shutdown
+
+interface Ethernet3/21
+  switchport
+  no shutdown
+
+interface Ethernet3/22
+  switchport
+  no shutdown
+
+interface Ethernet3/23
+  switchport
+  no shutdown
+
+interface Ethernet3/24
+  switchport
+  no shutdown
+
+interface Ethernet3/25
+  switchport
+  no shutdown
+
+interface Ethernet3/26
+  switchport
+  no shutdown
+
+interface Ethernet3/27
+  switchport
+  no shutdown
+
+interface Ethernet3/28
+  switchport
+  no shutdown
+
+interface Ethernet3/29
+  switchport
+  no shutdown
+
+interface Ethernet3/30
+  switchport
+  no shutdown
+
+interface Ethernet3/31
+  switchport
+  no shutdown
+
+interface Ethernet3/32
+  switchport
+  no shutdown
+
+interface Ethernet3/33
+  switchport
+  no shutdown
+
+interface Ethernet3/34
+  switchport
+  no shutdown
+
+interface Ethernet3/35
+  switchport
+  no shutdown
+
+interface Ethernet3/36
+  switchport
+  no shutdown
+
+interface Ethernet3/37
+  switchport
+  no shutdown
+
+interface Ethernet3/38
+  switchport
+  no shutdown
+
+interface Ethernet3/39
+  switchport
+  no shutdown
+
+interface Ethernet3/40
+  switchport
+  no shutdown
+
+interface Ethernet3/41
+  switchport
+  no shutdown
+
+interface Ethernet3/42
+  switchport
+  no shutdown
+
+interface Ethernet3/43
+  switchport
+  no shutdown
+
+interface Ethernet3/44
+  switchport
+  no shutdown
+
+interface Ethernet3/45
+  switchport
+  no shutdown
+
+interface Ethernet3/46
+  switchport
+  no shutdown
+
+interface Ethernet3/47
+  switchport
+  no shutdown
+
+interface Ethernet3/48
+  switchport
+  no shutdown
+
+interface Ethernet4/1
+  switchport
+  no shutdown
+
+interface Ethernet4/2
+  switchport
+  no shutdown
+
+interface Ethernet4/3
+  switchport
+  no shutdown
+
+interface Ethernet4/4
+  switchport
+  no shutdown
+
+interface Ethernet4/5
+  switchport
+  no shutdown
+
+interface Ethernet4/6
+  switchport
+  no shutdown
+
+interface Ethernet4/7
+  switchport
+  no shutdown
+
+interface Ethernet4/8
+  switchport
+  no shutdown
+
+interface Ethernet4/9
+  switchport
+  no shutdown
+
+interface Ethernet4/10
+  switchport
+  no shutdown
+
+interface Ethernet4/11
+  switchport
+  no shutdown
+
+interface Ethernet4/12
+  switchport
+  no shutdown
+
+interface Ethernet4/13
+  switchport
+  no shutdown
+
+interface Ethernet4/14
+  switchport
+  no shutdown
+
+interface Ethernet4/15
+  switchport
+  no shutdown
+
+interface Ethernet4/16
+  switchport
+  no shutdown
+
+interface Ethernet4/17
+  switchport
+  no shutdown
+
+interface Ethernet4/18
+  switchport
+  no shutdown
+
+interface Ethernet4/19
+  switchport
+  no shutdown
+
+interface Ethernet4/20
+  switchport
+  no shutdown
+
+interface Ethernet4/21
+  switchport
+  no shutdown
+
+interface Ethernet4/22
+  switchport
+  no shutdown
+
+interface Ethernet4/23
+  switchport
+  no shutdown
+
+interface Ethernet4/24
+  switchport
+  no shutdown
+
+interface Ethernet4/25
+  switchport
+  no shutdown
+
+interface Ethernet4/26
+  switchport
+  no shutdown
+
+interface Ethernet4/27
+  switchport
+  no shutdown
+
+interface Ethernet4/28
+  switchport
+  no shutdown
+
+interface Ethernet4/29
+  switchport
+  no shutdown
+
+interface Ethernet4/30
+  switchport
+  no shutdown
+
+interface Ethernet4/31
+  switchport
+  no shutdown
+
+interface Ethernet4/32
+  switchport
+  no shutdown
+
+interface Ethernet4/33
+  switchport
+  no shutdown
+
+interface Ethernet4/34
+  switchport
+  no shutdown
+
+interface Ethernet4/35
+  switchport
+  no shutdown
+
+interface Ethernet4/36
+  switchport
+  no shutdown
+
+interface Ethernet4/37
+  switchport
+  no shutdown
+
+interface Ethernet4/38
+  switchport
+  no shutdown
+
+interface Ethernet4/39
+  switchport
+  no shutdown
+
+interface Ethernet4/40
+  switchport
+  no shutdown
+
+interface Ethernet4/41
+  switchport
+  no shutdown
+
+interface Ethernet4/42
+  switchport
+  no shutdown
+
+interface Ethernet4/43
+  switchport
+  no shutdown
+
+interface Ethernet4/44
+  switchport
+  no shutdown
+
+interface Ethernet4/45
+  switchport
+  no shutdown
+
+interface Ethernet4/46
+  switchport
+  no shutdown
+
+interface Ethernet4/47
+  switchport
+  no shutdown
+
+interface Ethernet4/48
+  switchport
+  no shutdown
+line console
+line vty
+boot kickstart bootflash:/titanium-d1-kickstart.7.3.0.D1.1.bin
+boot system bootflash:/titanium-d1.7.3.0.D1.1.bin 
+no logging console
+
+
+</entry>
+        </extensions>
+        <interface id="0" name="Ethernet2/1"/>
+        <interface id="1" name="Ethernet2/2"/>
+        <interface id="2" name="Ethernet2/3"/>
+    </node>
+    <node name="nx-osv-2" type="SIMPLE" subtype="NX-OSv" location="546,129">
+        <extensions>
+            <entry key="AutoNetkit.IGP" type="String">ospf</entry>
+            <entry key="config" type="String">!Command: show running-config
+!Time: Fri Oct  5 15:44:48 2018
+
+version 7.3(0)D1(1)
+power redundancy-mode redundant
+
+hostname spine-2
+vdc spine-2 id 1
+  limit-resource module-type m1 m1xl m2xl f2e 
+  allocate interface Ethernet2/1-48
+  allocate interface Ethernet3/1-48
+  allocate interface Ethernet4/1-48
+  limit-resource vlan minimum 16 maximum 4094
+  limit-resource vrf minimum 2 maximum 4096
+  limit-resource port-channel minimum 0 maximum 768
+  limit-resource u4route-mem minimum 96 maximum 96
+  limit-resource u6route-mem minimum 24 maximum 24
+  limit-resource m4route-mem minimum 58 maximum 58
+  limit-resource m6route-mem minimum 8 maximum 8
+
+feature privilege
+feature lldp
+
+username admin password 5 $5$Otc7T0NC$K.ulnSZnSyXLrTGNBdtLgZJXEa8EeNx.BrdZ98XyK2C  role network-admin
+username sletner password 5 $5$TWKMlp8K$1LjQ2GfdluqWfHteD8Mpw1I.aa.i2oHHmv/hIX/qwR9  role network-admin
+username sletner passphrase  lifetime 99999 warntime 14 gracetime 3
+no password strength-check
+ip domain-lookup
+ip domain-name lab.com
+vlan dot1Q tag native
+system default switchport
+system jumbomtu 0
+no logging event trunk-status enable
+copp profile strict
+snmp-server user sletner network-admin auth md5 0xfca6221ec9a6b39fcdfac325cac5d7f9 priv 0xfca6221ec9a6b39fcdfac325cac5d7f9 localizedkey
+snmp-server user admin auth md5 0x328945d53e05e8e7207f8c20b142f0b7 priv 0x328945d53e05e8e7207f8c20b142f0b7 localizedkey engineID 128:0:0:9:3:0:0:0:0:0:0
+rmon event 1 log description FATAL(1) owner PMON@FATAL
+rmon event 2 log description CRITICAL(2) owner PMON@CRITICAL
+rmon event 3 log description ERROR(3) owner PMON@ERROR
+rmon event 4 log description WARNING(4) owner PMON@WARNING
+rmon event 5 log description INFORMATION(5) owner PMON@INFO
+snmp-server enable traps link
+snmp-server enable traps link cisco-xcvr-mon-status-chg
+
+vlan 1
+
+vrf context management
+  ip route 0.0.0.0/0 10.34.183.221
+
+interface mgmt0
+  vrf member management
+  ip address 10.34.183.216/27
+
+interface Ethernet2/1
+  no switchport
+  mac-address 0000.0000.002f
+  no shutdown
+
+interface Ethernet2/2
+  no switchport
+  mac-address 0000.0000.002f
+  no shutdown
+
+interface Ethernet2/3
+  no switchport
+  mac-address 0000.0000.002f
+  no shutdown
+
+interface Ethernet2/4
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/5
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/6
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/7
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/8
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/9
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/10
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/11
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/12
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/13
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/14
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/15
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/16
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/17
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/18
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/19
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/20
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/21
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/22
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/23
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/24
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/25
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/26
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/27
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/28
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/29
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/30
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/31
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/32
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/33
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/34
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/35
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/36
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/37
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/38
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/39
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/40
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/41
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/42
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/43
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/44
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/45
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/46
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/47
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet2/48
+  shutdown
+  no switchport
+  mac-address 0000.0000.002f
+
+interface Ethernet3/1
+  switchport
+  no shutdown
+
+interface Ethernet3/2
+  switchport
+  no shutdown
+
+interface Ethernet3/3
+  switchport
+  no shutdown
+
+interface Ethernet3/4
+  switchport
+  no shutdown
+
+interface Ethernet3/5
+  switchport
+  no shutdown
+
+interface Ethernet3/6
+  switchport
+  no shutdown
+
+interface Ethernet3/7
+  switchport
+  no shutdown
+
+interface Ethernet3/8
+  switchport
+  no shutdown
+
+interface Ethernet3/9
+  switchport
+  no shutdown
+
+interface Ethernet3/10
+  switchport
+  no shutdown
+
+interface Ethernet3/11
+  switchport
+  no shutdown
+
+interface Ethernet3/12
+  switchport
+  no shutdown
+
+interface Ethernet3/13
+  switchport
+  no shutdown
+
+interface Ethernet3/14
+  switchport
+  no shutdown
+
+interface Ethernet3/15
+  switchport
+  no shutdown
+
+interface Ethernet3/16
+  switchport
+  no shutdown
+
+interface Ethernet3/17
+  switchport
+  no shutdown
+
+interface Ethernet3/18
+  switchport
+  no shutdown
+
+interface Ethernet3/19
+  switchport
+  no shutdown
+
+interface Ethernet3/20
+  switchport
+  no shutdown
+
+interface Ethernet3/21
+  switchport
+  no shutdown
+
+interface Ethernet3/22
+  switchport
+  no shutdown
+
+interface Ethernet3/23
+  switchport
+  no shutdown
+
+interface Ethernet3/24
+  switchport
+  no shutdown
+
+interface Ethernet3/25
+  switchport
+  no shutdown
+
+interface Ethernet3/26
+  switchport
+  no shutdown
+
+interface Ethernet3/27
+  switchport
+  no shutdown
+
+interface Ethernet3/28
+  switchport
+  no shutdown
+
+interface Ethernet3/29
+  switchport
+  no shutdown
+
+interface Ethernet3/30
+  switchport
+  no shutdown
+
+interface Ethernet3/31
+  switchport
+  no shutdown
+
+interface Ethernet3/32
+  switchport
+  no shutdown
+
+interface Ethernet3/33
+  switchport
+  no shutdown
+
+interface Ethernet3/34
+  switchport
+  no shutdown
+
+interface Ethernet3/35
+  switchport
+  no shutdown
+
+interface Ethernet3/36
+  switchport
+  no shutdown
+
+interface Ethernet3/37
+  switchport
+  no shutdown
+
+interface Ethernet3/38
+  switchport
+  no shutdown
+
+interface Ethernet3/39
+  switchport
+  no shutdown
+
+interface Ethernet3/40
+  switchport
+  no shutdown
+
+interface Ethernet3/41
+  switchport
+  no shutdown
+
+interface Ethernet3/42
+  switchport
+  no shutdown
+
+interface Ethernet3/43
+  switchport
+  no shutdown
+
+interface Ethernet3/44
+  switchport
+  no shutdown
+
+interface Ethernet3/45
+  switchport
+  no shutdown
+
+interface Ethernet3/46
+  switchport
+  no shutdown
+
+interface Ethernet3/47
+  switchport
+  no shutdown
+
+interface Ethernet3/48
+  switchport
+  no shutdown
+
+interface Ethernet4/1
+  switchport
+  no shutdown
+
+interface Ethernet4/2
+  switchport
+  no shutdown
+
+interface Ethernet4/3
+  switchport
+  no shutdown
+
+interface Ethernet4/4
+  switchport
+  no shutdown
+
+interface Ethernet4/5
+  switchport
+  no shutdown
+
+interface Ethernet4/6
+  switchport
+  no shutdown
+
+interface Ethernet4/7
+  switchport
+  no shutdown
+
+interface Ethernet4/8
+  switchport
+  no shutdown
+
+interface Ethernet4/9
+  switchport
+  no shutdown
+
+interface Ethernet4/10
+  switchport
+  no shutdown
+
+interface Ethernet4/11
+  switchport
+  no shutdown
+
+interface Ethernet4/12
+  switchport
+  no shutdown
+
+interface Ethernet4/13
+  switchport
+  no shutdown
+
+interface Ethernet4/14
+  switchport
+  no shutdown
+
+interface Ethernet4/15
+  switchport
+  no shutdown
+
+interface Ethernet4/16
+  switchport
+  no shutdown
+
+interface Ethernet4/17
+  switchport
+  no shutdown
+
+interface Ethernet4/18
+  switchport
+  no shutdown
+
+interface Ethernet4/19
+  switchport
+  no shutdown
+
+interface Ethernet4/20
+  switchport
+  no shutdown
+
+interface Ethernet4/21
+  switchport
+  no shutdown
+
+interface Ethernet4/22
+  switchport
+  no shutdown
+
+interface Ethernet4/23
+  switchport
+  no shutdown
+
+interface Ethernet4/24
+  switchport
+  no shutdown
+
+interface Ethernet4/25
+  switchport
+  no shutdown
+
+interface Ethernet4/26
+  switchport
+  no shutdown
+
+interface Ethernet4/27
+  switchport
+  no shutdown
+
+interface Ethernet4/28
+  switchport
+  no shutdown
+
+interface Ethernet4/29
+  switchport
+  no shutdown
+
+interface Ethernet4/30
+  switchport
+  no shutdown
+
+interface Ethernet4/31
+  switchport
+  no shutdown
+
+interface Ethernet4/32
+  switchport
+  no shutdown
+
+interface Ethernet4/33
+  switchport
+  no shutdown
+
+interface Ethernet4/34
+  switchport
+  no shutdown
+
+interface Ethernet4/35
+  switchport
+  no shutdown
+
+interface Ethernet4/36
+  switchport
+  no shutdown
+
+interface Ethernet4/37
+  switchport
+  no shutdown
+
+interface Ethernet4/38
+  switchport
+  no shutdown
+
+interface Ethernet4/39
+  switchport
+  no shutdown
+
+interface Ethernet4/40
+  switchport
+  no shutdown
+
+interface Ethernet4/41
+  switchport
+  no shutdown
+
+interface Ethernet4/42
+  switchport
+  no shutdown
+
+interface Ethernet4/43
+  switchport
+  no shutdown
+
+interface Ethernet4/44
+  switchport
+  no shutdown
+
+interface Ethernet4/45
+  switchport
+  no shutdown
+
+interface Ethernet4/46
+  switchport
+  no shutdown
+
+interface Ethernet4/47
+  switchport
+  no shutdown
+
+interface Ethernet4/48
+  switchport
+  no shutdown
+line console
+line vty
+boot kickstart bootflash:/titanium-d1-kickstart.7.3.0.D1.1.bin
+boot system bootflash:/titanium-d1.7.3.0.D1.1.bin 
+no logging console
+
+
+</entry>
+        </extensions>
+        <interface id="0" name="Ethernet2/1"/>
+        <interface id="1" name="Ethernet2/2"/>
+        <interface id="2" name="Ethernet2/3"/>
+    </node>
+    <node name="csr1000v-1" type="SIMPLE" subtype="CSR1000v" location="296,295">
+        <extensions>
+            <entry key="AutoNetkit.IGP" type="String">ospf</entry>
+            <entry key="config" type="String">!
+! Last configuration change at 15:44:25 UTC Fri Oct 5 2018
+!
+version 16.6
+service config
+service timestamps debug datetime msec
+service timestamps log datetime msec
+service password-encryption
+platform qfp utilization monitor load 80
+no platform punt-keepalive disable-kernel-core
+platform console serial
+!
+hostname leaf-1
+!
+boot-start-marker
+boot-end-marker
+!
+!
+vrf definition Mgmt
+ !
+ address-family ipv4
+ exit-address-family
+!
+enable secret 5 $1$eyEN$atWBMVaatjkMsULD4IMOS0
+!
+no aaa new-model
+!
+!
+!
+!
+!
+!
+!
+!
+!
+ip domain name lab.com
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+subscriber templating
+! 
+! 
+! 
+! 
+!
+!
+!
+multilink bundle-name authenticated
+!
+domain lab.com
+!
+!
+!
+!
+crypto pki trustpoint TP-self-signed-1613455013
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-1613455013
+ revocation-check none
+ rsakeypair TP-self-signed-1613455013
+!
+!
+crypto pki certificate chain TP-self-signed-1613455013
+ certificate self-signed 01 nvram:IOS-Self-Sig#1.cer
+!
+!
+!
+!
+!
+!
+!
+!
+!
+license udi pid CSR1000V sn 9AZ8GZX9580
+diagnostic bootup level minimal
+spanning-tree extend system-id
+!
+!
+!
+username cisco privilege 15 secret 5 $1$zobQ$f127fS.nFSvtn3zlN2Eh1/
+username sletner password 7 05180A0A35424B1B
+!
+redundancy
+!
+!
+!
+!
+!
+lldp run
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+! 
+! 
+!
+!
+interface GigabitEthernet1
+ vrf forwarding Mgmt
+ ip address 10.34.183.217 255.255.255.224
+ negotiation auto
+ no lldp transmit
+ no lldp receive
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet2
+ no ip address
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet3
+ no ip address
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+!
+virtual-service csr_mgmt
+!
+ip forward-protocol nd
+no ip http server
+ip http authentication local
+no ip http secure-server
+ip http client source-interface GigabitEthernet1
+ip route vrf Mgmt 0.0.0.0 0.0.0.0 10.34.183.221
+!
+ip ssh rsa keypair-name ssh
+ip ssh version 2
+ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+!
+!
+!
+snmp-server contact Scott_S
+!
+!
+control-plane
+!
+!
+!
+!
+!
+!
+line con 0
+ stopbits 1
+line vty 0
+ privilege level 15
+ password 7 071C2D495A071C17
+ login local
+ transport input telnet ssh
+line vty 1 4
+ password 7 071C2D495A071C17
+ login local
+ length 0
+ transport input telnet ssh
+!
+!
+!
+!
+!
+!
+end
+
+</entry>
+        </extensions>
+        <interface id="0" name="GigabitEthernet2"/>
+        <interface id="1" name="GigabitEthernet3"/>
+    </node>
+    <node name="csr1000v-2" type="SIMPLE" subtype="CSR1000v" location="462,291">
+        <extensions>
+            <entry key="AutoNetkit.IGP" type="String">ospf</entry>
+            <entry key="config" type="String">!
+! Last configuration change at 15:44:26 UTC Fri Oct 5 2018
+!
+version 16.6
+service config
+service timestamps debug datetime msec
+service timestamps log datetime msec
+service password-encryption
+platform qfp utilization monitor load 80
+no platform punt-keepalive disable-kernel-core
+platform console serial
+!
+hostname leaf-2
+!
+boot-start-marker
+boot-end-marker
+!
+!
+vrf definition Mgmt
+ !
+ address-family ipv4
+ exit-address-family
+!
+enable secret 5 $1$eyEN$atWBMVaatjkMsULD4IMOS0
+!
+no aaa new-model
+!
+!
+!
+!
+!
+!
+!
+!
+!
+ip domain name lab.com
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+subscriber templating
+! 
+! 
+! 
+! 
+!
+!
+!
+multilink bundle-name authenticated
+!
+domain lab.com
+!
+!
+!
+!
+crypto pki trustpoint TP-self-signed-1137192084
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-1137192084
+ revocation-check none
+ rsakeypair TP-self-signed-1137192084
+!
+!
+crypto pki certificate chain TP-self-signed-1137192084
+ certificate self-signed 01 nvram:IOS-Self-Sig#1.cer
+!
+!
+!
+!
+!
+!
+!
+!
+!
+license udi pid CSR1000V sn 9TSLGA14AZR
+diagnostic bootup level minimal
+spanning-tree extend system-id
+!
+!
+!
+username cisco privilege 15 secret 5 $1$n7XA$wnQMeDYBWSjqn3mB2BTWu.
+username sletner password 7 05180A0A35424B1B
+!
+redundancy
+!
+!
+!
+!
+!
+lldp run
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+! 
+! 
+!
+!
+interface GigabitEthernet1
+ vrf forwarding Mgmt
+ ip address 10.34.183.218 255.255.255.224
+ negotiation auto
+ no lldp transmit
+ no lldp receive
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet2
+ no ip address
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet3
+ no ip address
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+!
+virtual-service csr_mgmt
+!
+ip forward-protocol nd
+no ip http server
+ip http authentication local
+no ip http secure-server
+ip http client source-interface GigabitEthernet1
+ip route vrf Mgmt 0.0.0.0 0.0.0.0 10.34.183.221
+!
+ip ssh rsa keypair-name ssh
+ip ssh version 2
+ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+!
+!
+!
+snmp-server contact Scott_S
+!
+!
+control-plane
+!
+!
+!
+!
+!
+!
+line con 0
+ stopbits 1
+line vty 0
+ privilege level 15
+ password 7 071C2D495A071C17
+ login local
+ transport input telnet ssh
+line vty 1 4
+ password 7 071C2D495A071C17
+ login local
+ length 0
+ transport input telnet ssh
+!
+ntp server 34.202.215.187
+ntp server 34.208.249.133
+ntp server pool.ntp.org
+!
+!
+!
+!
+!
+end
+
+</entry>
+        </extensions>
+        <interface id="0" name="GigabitEthernet2"/>
+        <interface id="1" name="GigabitEthernet3"/>
+    </node>
+    <node name="csr1000v-3" type="SIMPLE" subtype="CSR1000v" location="633,293">
+        <extensions>
+            <entry key="AutoNetkit.ibgp_role" type="String">HRR</entry>
+            <entry key="AutoNetkit.IGP" type="String">ospf</entry>
+            <entry key="config" type="String">!
+! Last configuration change at 15:44:26 UTC Fri Oct 5 2018
+!
+version 16.6
+service config
+service timestamps debug datetime msec
+service timestamps log datetime msec
+service password-encryption
+platform qfp utilization monitor load 80
+no platform punt-keepalive disable-kernel-core
+platform console serial
+!
+hostname leaf-3
+!
+boot-start-marker
+boot-end-marker
+!
+!
+vrf definition Mgmt
+ !
+ address-family ipv4
+ exit-address-family
+!
+enable secret 5 $1$eyEN$atWBMVaatjkMsULD4IMOS0
+!
+no aaa new-model
+!
+!
+!
+!
+!
+!
+!
+!
+!
+ip domain name lab.com
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+subscriber templating
+! 
+! 
+! 
+! 
+!
+!
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+crypto pki trustpoint TP-self-signed-3708616619
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-3708616619
+ revocation-check none
+ rsakeypair TP-self-signed-3708616619
+!
+crypto pki trustpoint TP-self-signed-2918833695
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-2918833695
+ revocation-check none
+ rsakeypair TP-self-signed-2918833695
+!
+!
+crypto pki certificate chain TP-self-signed-3708616619
+ certificate self-signed 01 nvram:IOS-Self-Sig#1.cer
+crypto pki certificate chain TP-self-signed-2918833695
+!
+!
+!
+!
+!
+!
+!
+!
+!
+license udi pid CSR1000V sn 9GCYK8NN65P
+diagnostic bootup level minimal
+spanning-tree extend system-id
+!
+!
+!
+username cisco privilege 15 secret 5 $1$xg4K$UOA.sa5GCdoOu2/4LOD8y1
+username sletner password 7 05180A0A35424B1B
+!
+redundancy
+!
+!
+!
+!
+!
+lldp run
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+! 
+! 
+!
+!
+interface GigabitEthernet1
+ vrf forwarding Mgmt
+ ip address 10.34.183.219 255.255.255.224
+ negotiation auto
+ no lldp transmit
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet2
+ no ip address
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet3
+ no ip address
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+!
+virtual-service csr_mgmt
+!
+ip forward-protocol nd
+ip http server
+ip http authentication local
+ip http secure-server
+ip http client source-interface GigabitEthernet1
+ip route vrf Mgmt 0.0.0.0 0.0.0.0 10.34.183.221
+!
+ip ssh rsa keypair-name ssh
+ip ssh version 2
+ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+!
+!
+!
+snmp-server contact Scott_S
+!
+!
+control-plane
+!
+!
+!
+!
+!
+!
+line con 0
+ stopbits 1
+line vty 0
+ privilege level 15
+ password 7 071C2D495A071C17
+ login local
+ transport input telnet ssh
+line vty 1 4
+ privilege level 15
+ password 7 071C2D495A071C17
+ login local
+ length 0
+ transport input telnet ssh
+!
+ntp server 34.202.215.187
+ntp server pool.ntp.org
+!
+!
+!
+!
+!
+end
+
+</entry>
+        </extensions>
+        <interface id="0" name="GigabitEthernet2"/>
+        <interface id="1" name="GigabitEthernet3"/>
+    </node>
+    <annotations/>
+    <connection dst="/virl:topology/virl:node[3]/virl:interface[1]" src="/virl:topology/virl:node[1]/virl:interface[1]"/>
+    <connection dst="/virl:topology/virl:node[4]/virl:interface[1]" src="/virl:topology/virl:node[1]/virl:interface[2]"/>
+    <connection dst="/virl:topology/virl:node[5]/virl:interface[1]" src="/virl:topology/virl:node[1]/virl:interface[3]"/>
+    <connection dst="/virl:topology/virl:node[3]/virl:interface[2]" src="/virl:topology/virl:node[2]/virl:interface[1]"/>
+    <connection dst="/virl:topology/virl:node[4]/virl:interface[2]" src="/virl:topology/virl:node[2]/virl:interface[2]"/>
+    <connection dst="/virl:topology/virl:node[5]/virl:interface[2]" src="/virl:topology/virl:node[2]/virl:interface[3]"/>
+</topology>
