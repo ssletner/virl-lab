@@ -10,7 +10,7 @@ Jinja2==2.10
 lxml==4.2.1
 MarkupSafe==1.0
 python-dateutil==2.7.2
-PyYAML==3.12
+PyYAML==5.4
 requests==2.18.4
 six==1.11.0
 tabulate==0.8.2
